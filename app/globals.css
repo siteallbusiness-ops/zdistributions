@@ -123,6 +123,109 @@ a {
   color: var(--muted);
 }
 
+/* ── Hamburger button ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.nav-hamburger:hover {
+  background: var(--border);
+}
+
+.nav-hamburger span {
+  display: block;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--text);
+  transition: transform 0.22s ease, opacity 0.22s ease;
+  transform-origin: center;
+}
+
+.nav-hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile overlay + drawer ── */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.38);
+  z-index: 200;
+  animation: fadeIn 0.18s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.mobile-nav-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(280px, 82vw);
+  height: 100%;
+  background: var(--surface);
+  box-shadow: -4px 0 24px rgba(0,0,0,0.13);
+  animation: slideIn 0.22s ease;
+  overflow-y: auto;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+}
+
+.mobile-nav-links a {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  transition: background 0.14s, color 0.14s;
+}
+
+.mobile-nav-links a:hover {
+  background: var(--bg);
+  color: var(--primary);
+}
+
+.mobile-nav-links a:last-child {
+  border-bottom: none;
+  margin-top: 8px;
+  color: var(--primary);
+}
+
+@media (max-width: 900px) {
+  .nav-hamburger {
+    display: flex;
+  }
+}
+
 .hero {
   color: white;
   background:
