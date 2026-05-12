@@ -1,0 +1,642 @@
+/* ── Signup Multi-step Form ── */
+.signup-page {
+  background: #f0f2f5;
+  min-height: calc(100vh - 126px);
+  padding: 40px 16px 60px;
+}
+
+.signup-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ── Sidebar stepper ── */
+.signup-sidebar {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+  position: sticky;
+  top: 24px;
+}
+
+.signup-steps {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.signup-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  position: relative;
+  padding-bottom: 28px;
+}
+
+.signup-step:last-child {
+  padding-bottom: 0;
+}
+
+/* connector line */
+.signup-step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 40px;
+  width: 2px;
+  height: calc(100% - 12px);
+  background: #d9dde3;
+}
+
+.signup-step.done::after,
+.signup-step.active::after {
+  background: #2f6f56;
+}
+
+.signup-step__num {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  background: #e8eaed;
+  color: #888;
+  border: 2px solid #d9dde3;
+  z-index: 1;
+}
+
+.signup-step.done .signup-step__num {
+  background: #28a745;
+  border-color: #28a745;
+  color: #fff;
+}
+
+.signup-step.active .signup-step__num {
+  background: #2f6f56;
+  border-color: #2f6f56;
+  color: #fff;
+}
+
+.signup-step__label {
+  padding-top: 8px;
+  font-size: 0.9rem;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.signup-step.done .signup-step__label,
+.signup-step.active .signup-step__label {
+  color: #2f6f56;
+  font-weight: 700;
+}
+
+.signup-login-hint {
+  font-size: 0.84rem;
+  color: #888;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.signup-login-hint a {
+  color: #2f6f56;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* ── Main form card ── */
+.signup-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 44px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.07);
+}
+
+.signup-card h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f2a26;
+  margin-bottom: 28px;
+}
+
+/* ── Field groups ── */
+.sf-row {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.sf-row-1 { grid-template-columns: 1fr; }
+.sf-row-2 { grid-template-columns: 1fr 1fr; }
+.sf-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.sf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sf-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.sf-label .req {
+  color: #e00;
+  margin-left: 2px;
+}
+
+.sf-input,
+.sf-select,
+.sf-textarea {
+  height: 44px;
+  padding: 0 12px;
+  border: 1.5px solid #d6dae0;
+  border-radius: 8px;
+  font-size: 0.93rem;
+  color: #1f2a26;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.18s;
+  width: 100%;
+}
+
+.sf-textarea {
+  height: auto;
+  min-height: 80px;
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+.sf-input:focus,
+.sf-select:focus,
+.sf-textarea:focus {
+  border-color: #2f6f56;
+}
+
+.sf-input::placeholder {
+  color: #bbb;
+}
+
+.sf-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+/* Phone input with dial code */
+.sf-phone-wrap {
+  display: flex;
+  gap: 0;
+  border: 1.5px solid #d6dae0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.18s;
+}
+
+.sf-phone-wrap:focus-within {
+  border-color: #1f2d6e;
+}
+
+.sf-phone-code {
+  height: 44px;
+  border: none;
+  border-right: 1.5px solid #d6dae0;
+  border-radius: 0;
+  background: #f5f6f8;
+  padding: 0 10px;
+  font-size: 0.88rem;
+  color: #333;
+  min-width: 90px;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 24px;
+  cursor: pointer;
+}
+
+.sf-phone-num {
+  flex: 1;
+  height: 44px;
+  border: none;
+  padding: 0 12px;
+  font-size: 0.93rem;
+  color: #1f2a26;
+  outline: none;
+  background: #fff;
+}
+
+.sf-phone-num::placeholder {
+  color: #bbb;
+}
+
+/* ── Section divider ── */
+.sf-section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2a26;
+  margin: 28px 0 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+/* ── Radio group ── */
+.sf-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin-top: 4px;
+}
+
+.sf-radio-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.92rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.sf-radio-item input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2f6f56;
+  cursor: pointer;
+}
+
+/* ── Checkbox group ── */
+.sf-check-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.sf-check-header label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.sf-select-all {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.86rem;
+  color: #555;
+  cursor: pointer;
+}
+
+.sf-select-all input[type="checkbox"] {
+  accent-color: #2f6f56;
+  width: 16px;
+  height: 16px;
+}
+
+.sf-check-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 16px;
+}
+
+.sf-check-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.91rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.sf-check-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #2f6f56;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ── AML section ── */
+.sf-aml-section {
+  background: #f8f9fb;
+  border: 1px solid #e2e6ec;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.sf-aml-section .sf-section-title {
+  margin-top: 0;
+  border-bottom-color: #dde2ea;
+}
+
+/* ── Trade reference card ── */
+.sf-ref-card {
+  background: #f8f9fb;
+  border: 1px solid #e2e6ec;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.sf-ref-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2a26;
+  margin-bottom: 16px;
+}
+
+/* ── File upload ── */
+.sf-uploads {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.sf-upload-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sf-upload-input {
+  border: 1.5px solid #d6dae0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.86rem;
+  background: #fff;
+  cursor: pointer;
+  color: #333;
+}
+
+.sf-upload-input::-webkit-file-upload-button {
+  background: #eef0f4;
+  border: 1px solid #cdd2da;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.83rem;
+  cursor: pointer;
+  margin-right: 8px;
+  color: #333;
+}
+
+.sf-upload-note {
+  background: #eef4ff;
+  border: 1px solid #c8d8f8;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.86rem;
+  color: #2553b0;
+  margin-bottom: 20px;
+}
+
+/* ── Signature ── */
+.sf-sig-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1.5px solid #d6dae0;
+}
+
+.sf-sig-tab {
+  padding: 11px 16px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: #f5f6f8;
+  color: #555;
+  transition: background 0.16s, color 0.16s;
+}
+
+.sf-sig-tab.active {
+  background: #2f6f56;
+  color: #fff;
+}
+
+.sf-canvas-wrap {
+  border: 1.5px solid #d6dae0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  background: #fff;
+  position: relative;
+}
+
+.sf-sig-canvas {
+  display: block;
+  width: 100%;
+  height: 200px;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.sf-canvas-hint {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.78rem;
+  color: #bbb;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.sf-sig-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.sf-sig-btn {
+  padding: 7px 18px;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid #d6dae0;
+  background: #fff;
+  color: #333;
+  transition: background 0.14s;
+}
+
+.sf-sig-btn:hover {
+  background: #f0f2f5;
+}
+
+.sf-sig-btn.saved {
+  background: #2f6f56;
+  color: #fff;
+  border-color: #2f6f56;
+}
+
+.sf-sig-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sf-sig-hint-text {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* ── Form actions ── */
+.sf-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid #eee;
+}
+
+.sf-btn-back {
+  padding: 12px 32px;
+  border-radius: 10px;
+  border: 2px solid #d6dae0;
+  background: #fff;
+  color: #555;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.16s, color 0.16s;
+}
+
+.sf-btn-back:hover {
+  border-color: #2f6f56;
+  color: #2f6f56;
+}
+
+.sf-btn-next {
+  padding: 12px 40px;
+  border-radius: 10px;
+  border: none;
+  background: #2f6f56;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.16s;
+}
+
+.sf-btn-next:hover {
+  background: #245844;
+}
+
+/* ── Success step ── */
+.sf-success {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.sf-success__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #28a745;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.sf-success__icon svg {
+  width: 40px;
+  height: 40px;
+  color: #fff;
+}
+
+.sf-success h2 {
+  margin-bottom: 12px;
+}
+
+.sf-success p {
+  color: #666;
+  font-size: 1rem;
+  max-width: 420px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.sf-success .sf-btn-next {
+  margin-top: 28px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .signup-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .signup-sidebar {
+    position: static;
+  }
+
+  .signup-steps {
+    flex-direction: row;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  .signup-step {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 0;
+    padding-right: 24px;
+    min-width: 80px;
+  }
+
+  .signup-step:not(:last-child)::after {
+    left: 40px;
+    top: 19px;
+    width: calc(100% - 20px);
+    height: 2px;
+  }
+
+  .signup-step__label {
+    padding-top: 4px;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .signup-card {
+    padding: 24px 20px;
+  }
+
+  .sf-row-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .sf-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .sf-check-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .sf-uploads {
+    grid-template-columns: 1fr;
+  }
+}
