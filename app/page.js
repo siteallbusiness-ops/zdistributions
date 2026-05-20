@@ -2,6 +2,7 @@ import HeroBannerSlider from "./components/HeroBannerSlider";
 import AboutSection from "./components/AboutSection";
 import CategoryShowcase from "./components/CategoryShowcase";
 import ProductImageTicker from "./components/ProductImageTicker";
+import { SALES_EMAIL } from "../lib/contact";
 
 export default function Home() {
   return (
@@ -129,7 +130,7 @@ export default function Home() {
               Use our online ordering platform to access exclusive wholesale pricing, manage your orders, and stay
               updated on the latest promotions from our catalogue.
             </p>
-            <a href="mailto:offers@zdistribution.com" className="portal-cta">
+            <a href={`mailto:${SALES_EMAIL}`} className="portal-cta">
               Contact Sales Team
             </a>
           </div>

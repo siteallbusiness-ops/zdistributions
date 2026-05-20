@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ADDRESS_FULL, COMPANY_NAME, PURCHASES_EMAIL, SALES_EMAIL } from "../../lib/contact";
 
 export default function SiteFooter() {
   return (
@@ -37,8 +38,10 @@ export default function SiteFooter() {
           <h5>Contact</h5>
           <div className="footer-links">
             <a href="tel:+441923250086">+44 1923 250086</a>
-            <a href="mailto:offers@zdistribution.com">offers@zdistribution.com</a>
-            <p>Unit 11, Trade City, Kingsway, Luton, Bedfordshire, LU1 1FW</p>
+            <a href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a>
+            <a href={`mailto:${PURCHASES_EMAIL}`}>{PURCHASES_EMAIL}</a>
+            <p>{COMPANY_NAME}</p>
+            <p>{ADDRESS_FULL}</p>
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { ADDRESS_FULL, COMPANY_NAME, PURCHASES_EMAIL, SALES_EMAIL } from "../../lib/contact";
 
 const INFO_CARDS = [
   {
@@ -21,10 +22,22 @@ const INFO_CARDS = [
         <path d="m2 7 10 7 10-7" />
       </svg>
     ),
-    label: "Email",
-    primary: "offers@zdistribution.com",
+    label: "Sales",
+    primary: SALES_EMAIL,
+    secondary: "Orders, pricing & enquiries",
+    href: `mailto:${SALES_EMAIL}`,
+  },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="4" width="20" height="16" rx="2" />
+        <path d="m2 7 10 7 10-7" />
+      </svg>
+    ),
+    label: "Purchases",
+    primary: PURCHASES_EMAIL,
     secondary: "We reply within 24 hours",
-    href: "mailto:offers@zdistribution.com",
+    href: `mailto:${PURCHASES_EMAIL}`,
   },
   {
     icon: (
@@ -34,8 +47,8 @@ const INFO_CARDS = [
       </svg>
     ),
     label: "Address",
-    primary: "Z Distribution Ltd",
-    secondary: "London, United Kingdom",
+    primary: COMPANY_NAME,
+    secondary: ADDRESS_FULL,
     href: null,
   },
   {
@@ -246,12 +259,19 @@ export default function ContactPage() {
                 </svg>
                 +44 1923 250086
               </a>
-              <a href="mailto:offers@zdistribution.com" className="ct-direct-btn ct-direct-btn-outline">
+              <a href={`mailto:${SALES_EMAIL}`} className="ct-direct-btn ct-direct-btn-outline">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                   <path d="m2 7 10 7 10-7" />
                 </svg>
-                Send Email
+                {SALES_EMAIL}
+              </a>
+              <a href={`mailto:${PURCHASES_EMAIL}`} className="ct-direct-btn ct-direct-btn-outline">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m2 7 10 7 10-7" />
+                </svg>
+                {PURCHASES_EMAIL}
               </a>
             </div>
           </div>

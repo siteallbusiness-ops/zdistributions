@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { ADDRESS_LOCATION_SHORT, PURCHASES_EMAIL, SALES_EMAIL } from "../../lib/contact";
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -10,8 +11,12 @@ export default function SiteHeader() {
     <>
       <header className="topbar">
         <div className="container topbar-inner">
-          <p>+44 1923 250086 | offers@zdistribution.com</p>
-          <p>London, United Kingdom</p>
+          <p>
+            +44 1923 250086 |{" "}
+            <a href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a> ·{" "}
+            <a href={`mailto:${PURCHASES_EMAIL}`}>{PURCHASES_EMAIL}</a>
+          </p>
+          <p>{ADDRESS_LOCATION_SHORT}</p>
         </div>
       </header>
 

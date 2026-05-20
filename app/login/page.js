@@ -1,3 +1,5 @@
+import { PURCHASES_EMAIL, SALES_EMAIL } from "../../lib/contact";
+
 export default function LoginPage() {
   return (
     <main className="login-root">
@@ -99,12 +101,19 @@ export default function LoginPage() {
             <span>or contact us directly</span>
           </div>
 
-          <a href="mailto:offers@zdistribution.com" className="lf-email-btn">
+          <a href={`mailto:${SALES_EMAIL}`} className="lf-email-btn">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="m2 7 10 7 10-7" />
             </svg>
-            offers@zdistribution.com
+            {SALES_EMAIL}
+          </a>
+          <a href={`mailto:${PURCHASES_EMAIL}`} className="lf-email-btn lf-email-btn-secondary">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m2 7 10 7 10-7" />
+            </svg>
+            {PURCHASES_EMAIL}
           </a>
         </div>
       </div>

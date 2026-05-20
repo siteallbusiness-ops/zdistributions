@@ -1,5 +1,6 @@
 import Link from "next/link";
 import products from "../../data/products.json";
+import { SALES_EMAIL } from "../../lib/contact";
 import ProductImage from "../components/ProductImage";
 
 const DEFAULT_PER_PAGE = 30;
@@ -224,7 +225,7 @@ export default async function ProductsPage({ searchParams }) {
                     </svg>
                     Order
                   </Link>
-                  <a href="mailto:offers@zdistribution.com" className="pc-btn pc-btn-inquiry">
+                  <a href={`mailto:${SALES_EMAIL}`} className="pc-btn pc-btn-inquiry">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
                       <path d="M4.5 7l7.5 6 7.5-6" />
