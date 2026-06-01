@@ -37,7 +37,7 @@ export default function SiteFooter() {
         <div>
           <h5>Contact</h5>
           <div className="footer-links">
-            <a href="tel:+441923250086">+44 1923 250086</a>
+            <a href="tel:+441618210615">0161 821 0615</a>
             <a href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a>
             <a href={`mailto:${PURCHASES_EMAIL}`}>{PURCHASES_EMAIL}</a>
             <p>{COMPANY_NAME}</p>
