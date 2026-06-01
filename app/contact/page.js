@@ -11,9 +11,9 @@ const INFO_CARDS = [
       </svg>
     ),
     label: "Phone",
-    primary: "+44 1923 250086",
+   primary: "0161 821 0615",
     secondary: "Mon – Fri: 9:00 AM – 6:00 PM",
-    href: "tel:+441923250086",
+    href: "tel:+441618210615",
   },
   {
     icon: (
