@@ -12,7 +12,7 @@ export default function SiteHeader() {
       <header className="topbar">
         <div className="container topbar-inner">
           <p>
-            +44 1923 250086 |{" "}
+            0161 821 0615 |{" "}
             <a href={`mailto:${SALES_EMAIL}`}>{SALES_EMAIL}</a> ·{" "}
             <a href={`mailto:${PURCHASES_EMAIL}`}>{PURCHASES_EMAIL}</a>
           </p>
